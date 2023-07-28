@@ -2,22 +2,32 @@
 
 public class FizzBuzz
 {
-    public static string execute(int number)
+    public string execute(int number)
     {
-        if (number % 3 == 0 && number % 5 == 0)
+        if (isDivisibleByThree(number) && isDivisibleByFive(number))
         {
             return "FizzBuzz";
         }
         
-        if (number % 3 == 0)
+        if (isDivisibleByThree(number))
         {
             return "Fizz";
         }
 
-        if (number % 5 == 0)
+        if (isDivisibleByFive(number))
         {
             return "Buzz";
         }
         return "1";
+    }
+
+    private  bool isDivisibleByFive(int number)
+    {
+        return number % 5 == 0;
+    }
+
+    private bool isDivisibleByThree(int number)
+    {
+        return number % 3 == 0;
     }
 }
