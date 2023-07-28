@@ -18,7 +18,7 @@ public class FizzBuzz
         {
             return "Buzz";
         }
-        return "1";
+        return number.ToString();
     }
 
     private  bool isDivisibleByFive(int number)

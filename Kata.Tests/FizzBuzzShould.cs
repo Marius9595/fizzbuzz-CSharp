@@ -1,4 +1,8 @@
+using System.Linq.Expressions;
 using FluentAssertions;
+using FsCheck;
+using FsCheck.Fluent;
+using Microsoft.FSharp.Core;
 
 namespace Kata.Tests;
 
@@ -8,16 +12,24 @@ namespace Kata.Tests;
      5 -> 'Buzz' ✔
      15 -> 'FizzBuzz' ✔
  */
-
 public class FizzBuzzShould
 {
     [Fact]
     public void turn_into_printable_not_special_numbers()
     {
-        int NOT_SPECIAL_NUMBER = 1;
-        new FizzBuzz().execute(NOT_SPECIAL_NUMBER).Should().Be("1");
+        var generatorOfNotSpecialNumbers = Gen
+            .Choose(0, 100)
+            .Where(number => number % 3 != 0)
+            .Where(number => number % 5 != 0)
+            .ToArbitrary();
+
+        Prop.ForAll<int>(
+            generatorOfNotSpecialNumbers, (int number) =>
+            {
+                new FizzBuzz().execute(number).Should().Be(number.ToString());
+            }).QuickCheckThrowOnFailure();
     }
-    
+
     [Fact]
     public void turn_into_number_divisible_by_three_to_Fizz_word()
     {
