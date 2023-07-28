@@ -1,8 +1,6 @@
-using System.Linq.Expressions;
 using FluentAssertions;
 using FsCheck;
 using FsCheck.Fluent;
-using Microsoft.FSharp.Core;
 
 namespace Kata.Tests;
 
