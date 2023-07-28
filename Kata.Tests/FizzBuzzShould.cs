@@ -34,14 +34,14 @@ public class FizzBuzzShould
     [Fact]
     public void convert_number_divisible_by_three_to_Fizz_word()
     {
-        var generatorOfNotSpecialNumbers = Gen
+        var generatorOfNumbersDivisibleByThree = Gen
             .Choose(MIN, MAX)
             .Where(number => IsDivisibleByThree(number))
             .Where(number => !IsDivisibleByFive(number))
             .ToArbitrary();
         
         Prop.ForAll<int>(
-            generatorOfNotSpecialNumbers, (int number) =>
+            generatorOfNumbersDivisibleByThree, (int number) =>
             {
                 new FizzBuzz().execute(number).Should().Be("Fizz");
             }).QuickCheckThrowOnFailure();
@@ -50,14 +50,14 @@ public class FizzBuzzShould
     [Fact]
     public void convert_number_divisible_by_five_to_Buzz_word()
     {
-        var generatorOfNotSpecialNumbers = Gen
+        var generatorOfNumbersDivisibleByFive = Gen
             .Choose(MIN, MAX)
             .Where(number => !IsDivisibleByThree(number))
             .Where(number => IsDivisibleByFive(number))
             .ToArbitrary();
         
         Prop.ForAll<int>(
-            generatorOfNotSpecialNumbers, (int number) =>
+            generatorOfNumbersDivisibleByFive, (int number) =>
             {
                 new FizzBuzz().execute(number).Should().Be("Buzz");
             }).QuickCheckThrowOnFailure();
@@ -66,14 +66,14 @@ public class FizzBuzzShould
     [Fact]
     public void convert_number_divisible_by_five_and_three_to_FizzBuzz_word()
     {
-        var generatorOfNotSpecialNumbers = Gen
+        var generatorOfNumbersDivisibleByThreeAndFive = Gen
             .Choose(MIN, MAX)
             .Where(number => IsDivisibleByThree(number))
             .Where(number => IsDivisibleByFive(number))
             .ToArbitrary();
         
         Prop.ForAll<int>(
-            generatorOfNotSpecialNumbers, (int number) =>
+            generatorOfNumbersDivisibleByThreeAndFive, (int number) =>
             {
                 new FizzBuzz().execute(number).Should().Be("FizzBuzz");
             }).QuickCheckThrowOnFailure();
