@@ -18,7 +18,7 @@ public class FizzBuzzShould
     private int MIN = 0;
     
     [Fact]
-    public void turn_into_printable_not_special_numbers()
+    public void convert_printable_not_special_numbers()
     {
         var generatorOfNotSpecialNumbers = Gen
             .Choose(MIN, MAX)
@@ -34,7 +34,7 @@ public class FizzBuzzShould
     }
 
     [Fact]
-    public void turn_into_number_divisible_by_three_to_Fizz_word()
+    public void convert_number_divisible_by_three_to_Fizz_word()
     {
         var generatorOfNotSpecialNumbers = Gen
             .Choose(MIN, MAX)
@@ -50,7 +50,7 @@ public class FizzBuzzShould
     }
     
     [Fact]
-    public void turn_into_number_divisible_by_five_to_Buzz_word()
+    public void convert_number_divisible_by_five_to_Buzz_word()
     {
         var generatorOfNotSpecialNumbers = Gen
             .Choose(MIN, MAX)
@@ -66,7 +66,7 @@ public class FizzBuzzShould
     }
     
     [Fact]
-    public void turn_into_number_divisible_by_five_and_three_to_FizzBuzz_word()
+    public void convert_number_divisible_by_five_and_three_to_FizzBuzz_word()
     {
         var generatorOfNotSpecialNumbers = Gen
             .Choose(MIN, MAX)
