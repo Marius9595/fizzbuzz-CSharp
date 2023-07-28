@@ -1,6 +1,7 @@
 using FluentAssertions;
 using FsCheck;
 using FsCheck.Fluent;
+using FsCheck.Xunit;
 
 namespace Kata.Tests;
 
@@ -31,8 +32,8 @@ public class FizzBuzzShould
             }).QuickCheckThrowOnFailure();
     }
 
-    [Fact]
-    public void convert_number_divisible_by_three_to_Fizz_word()
+    [Property]
+    public Property convert_number_divisible_by_three_to_Fizz_word()
     {
         var generatorOfNumbersDivisibleByThree = Gen
             .Choose(MIN, MAX)
@@ -40,11 +41,11 @@ public class FizzBuzzShould
             .Where(number => !IsDivisibleByFive(number))
             .ToArbitrary();
         
-        Prop.ForAll<int>(
+        return Prop.ForAll<int>(
             generatorOfNumbersDivisibleByThree, (int number) =>
             {
                 new FizzBuzz().execute(number).Should().Be("Fizz");
-            }).QuickCheckThrowOnFailure();
+            });
     }
     
     [Fact]
